@@ -1,5 +1,5 @@
 // services/local-api.js
-import { products } from '../config/products';
+import { products } from '../../config/products';
 
 export const fetchProducts = async () => {
   return products;
