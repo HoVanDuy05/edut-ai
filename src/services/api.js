@@ -63,3 +63,13 @@ export const fetchPurchasedCourses = async (userId) => {
   const all = JSON.parse(localStorage.getItem('purchased')) || [];
   return all.filter(p => p.userId === Number(userId));
 };
+
+
+export const fetchSuggestions = async (userId) => {
+  const data = JSON.parse(localStorage.getItem('suggestions')) || [];
+  const suggestion = data.find((s) => s.userId === Number(userId));
+  if (!suggestion) return [];
+
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  return products.filter((p) => suggestion.productIds.includes(p.id));
+};
