@@ -1,32 +1,51 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Form, Input, Button, Typography, Divider, message } from 'antd';
+import {
+  Row, Col, Card, Form, Input, Button, Typography, Divider, message,
+} from 'antd';
 import { GoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
 import '../css/Auth.css';
 
 const { Title } = Typography;
-const API = 'http://localhost:3001/users';
 
 const Auth = () => {
   const [mode, setMode] = useState('login');
   const [loading, setLoading] = useState(false);
 
+  const getUsers = () => {
+    return JSON.parse(localStorage.getItem('users')) || [];
+  };
+
+  const saveUser = (user) => {
+    const users = getUsers();
+    localStorage.setItem('users', JSON.stringify([...users, user]));
+  };
+
   const handleEmail = async (values) => {
     setLoading(true);
     try {
-      const { data } = await axios.get(API);
+      const users = getUsers();
+
       if (mode === 'login') {
-        const user = data.find(u => u.email === values.email && u.password === values.password);
+        const user = users.find(
+          (u) => u.email === values.email && u.password === values.password
+        );
         if (!user) throw new Error('Sai thông tin');
         localStorage.setItem('token', 'ok');
         localStorage.setItem('user', JSON.stringify(user));
       } else {
-        if (data.some(u => u.email === values.email)) throw new Error('Email đã sử dụng');
-        const newU = { ...values, id: Date.now(), createdAt: new Date().toISOString() };
-        await axios.post(API, newU);
+        if (users.some((u) => u.email === values.email)) {
+          throw new Error('Email đã sử dụng');
+        }
+        const newUser = {
+          ...values,
+          id: Date.now(),
+          createdAt: new Date().toISOString(),
+        };
+        saveUser(newUser);
         localStorage.setItem('token', 'ok');
-        localStorage.setItem('user', JSON.stringify(newU));
+        localStorage.setItem('user', JSON.stringify(newUser));
       }
+
       window.location.href = '/profile';
     } catch (e) {
       message.error(e.message);
@@ -43,17 +62,20 @@ const Auth = () => {
         email: decoded.email,
         createdAt: new Date().toISOString(),
       };
-      const { data } = await axios.get(API);
-      const existed = data.find(u => u.email === user.email);
+
+      const users = getUsers();
+      const existed = users.find((u) => u.email === user.email);
+
       if (existed) {
         localStorage.setItem('token', 'ok');
         localStorage.setItem('user', JSON.stringify(existed));
       } else {
         const newUser = { ...user, id: Date.now() };
-        await axios.post(API, newUser);
+        saveUser(newUser);
         localStorage.setItem('token', 'ok');
         localStorage.setItem('user', JSON.stringify(newUser));
       }
+
       window.location.href = '/profile';
     } catch (err) {
       console.error(err);
@@ -69,7 +91,7 @@ const Auth = () => {
             {mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}
           </Title>
 
-          <Form onFinish={handleEmail} layout="vertical" style={{ gap: 16 }}>
+          <Form onFinish={handleEmail} layout="vertical">
             {mode === 'register' && (
               <Form.Item name="name" label="Tên" rules={[{ required: true }]}>
                 <Input placeholder="Tên của bạn" />
