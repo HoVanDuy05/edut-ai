@@ -1,0 +1,529 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Hồ Văn Duy",
+      "email": "vanduyho717@gmail.com",
+      "password": "123456",
+      "role": "admin"
+    },
+    {
+      "id": "1752257668518",
+      "name": "Shinichi Kudo",
+      "email": "vanduyho919@gmail.com",
+      "createdAt": "2025-07-11T18:14:28.420Z"
+    },
+    {
+      "id": 1752424793344,
+      "email": "vanduyho616@gmail.com",
+      "password": "123456",
+      "name": "Văn Duy",
+      "createdAt": "2025-07-13T16:39:53.344Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Khóa học React",
+      "price": 450000,
+      "category": "Web Development",
+      "description": "React cơ bản đến nâng cao",
+      "longDescription": "Chi tiết JSX, Hooks, Router và thực hành dự án",
+      "image": "https://placehold.co/300x200?text=React",
+      "rating": 4.5,
+      "isHot": true,
+      "isNew": false,
+      "createdAt": "2023-01-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Tiếng Anh với người bản xứ",
+      "price": 1200000,
+      "category": "Language",
+      "description": "Luyện nói tiếng Anh",
+      "longDescription": "Luyện phản xạ và phát âm chuẩn",
+      "image": "https://placehold.co/300x200?text=English",
+      "rating": 5,
+      "isHot": true,
+      "isNew": true,
+      "createdAt": "2023-02-20T12:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Khóa học Node.js",
+      "price": 600000,
+      "category": "Backend Development",
+      "description": "Backend chuyên sâu",
+      "longDescription": "Xây dựng REST API, Express, MongoDB",
+      "image": "https://placehold.co/300x200?text=Node.js",
+      "rating": 4.2,
+      "isHot": false,
+      "isNew": false,
+      "createdAt": "2023-03-10T14:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Khóa học UI/UX Design",
+      "price": 700000,
+      "category": "Design",
+      "description": "Thiết kế trải nghiệm người dùng",
+      "longDescription": "Figma, nguyên lý thiết kế, thiết kế ứng dụng web/mobile",
+      "image": "https://placehold.co/300x200?text=UI%2FUX",
+      "rating": 4.8,
+      "isHot": true,
+      "isNew": true,
+      "createdAt": "2023-04-05T16:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Khóa học Vue.js",
+      "price": 490000,
+      "category": "Web Development",
+      "description": "Vue từ cơ bản đến nâng cao",
+      "longDescription": "Vue CLI, Vue Router, Vuex, Composition API",
+      "image": "https://placehold.co/300x200?text=Vue",
+      "rating": 4.3,
+      "isHot": false,
+      "isNew": true,
+      "createdAt": "2023-05-15T18:00:00Z"
+    },
+    {
+      "id": "6",
+      "name": "Tiếng Nhật sơ cấp",
+      "price": 800000,
+      "category": "Language",
+      "description": "Giao tiếp tiếng Nhật cơ bản",
+      "longDescription": "Học từ vựng, ngữ pháp, nghe hiểu và hội thoại sơ cấp",
+      "image": "https://placehold.co/300x200?text=Japanese",
+      "rating": 4.6,
+      "isHot": false,
+      "isNew": true,
+      "createdAt": "2023-06-01T20:00:00Z"
+    },
+    {
+      "id": "7",
+      "name": "Khóa học Python",
+      "price": 350000,
+      "category": "Programming",
+      "description": "Python cho người mới bắt đầu",
+      "longDescription": "Cấu trúc dữ liệu, vòng lặp, hàm và project mini",
+      "image": "https://placehold.co/300x200?text=Python",
+      "rating": 4.7,
+      "isHot": false,
+      "isNew": false,
+      "createdAt": "2023-07-10T22:00:00Z"
+    },
+    {
+      "id": "8",
+      "name": "Khóa học Data Science",
+      "price": 1500000,
+      "category": "Data Science",
+      "description": "Phân tích dữ liệu và học máy",
+      "longDescription": "Pandas, NumPy, Scikit-learn, dự án thực tế",
+      "image": "https://placehold.co/300x200?text=Data+Science",
+      "rating": 4.9,
+      "isHot": true,
+      "isNew": false,
+      "createdAt": "2023-08-20T10:00:00Z"
+    },
+    {
+      "id": "9",
+      "name": "Khóa học IELTS 7.0+",
+      "price": 1350000,
+      "category": "Language",
+      "description": "Luyện thi IELTS chuyên sâu",
+      "longDescription": "Chiến lược làm bài Reading, Writing, Speaking hiệu quả",
+      "image": "https://placehold.co/300x200?text=IELTS",
+      "rating": 5,
+      "isHot": true,
+      "isNew": true,
+      "createdAt": "2023-09-15T12:00:00Z"
+    },
+    {
+      "id": "10",
+      "name": "Khóa học Excel chuyên sâu",
+      "price": 400000,
+      "category": "Office Skills",
+      "description": "Excel từ cơ bản đến nâng cao",
+      "longDescription": "Hàm, Pivot Table, Dashboard, VBA",
+      "image": "https://placehold.co/300x200?text=Excel",
+      "rating": 4.4,
+      "isHot": false,
+      "isNew": false,
+      "createdAt": "2023-10-01T14:00:00Z"
+    },
+    {
+      "id": "11",
+      "name": "Kỹ năng thuyết trình",
+      "price": 300000,
+      "category": "Soft Skills",
+      "description": "Tăng sự tự tin khi nói trước đám đông",
+      "longDescription": "Ngôn ngữ cơ thể, trình bày slide, xử lý câu hỏi",
+      "image": "https://placehold.co/300x200?text=Presentation",
+      "rating": 4.1,
+      "isHot": false,
+      "isNew": false,
+      "createdAt": "2023-11-05T16:00:00Z"
+    },
+    {
+      "id": "12",
+      "name": "Tư duy phản biện",
+      "price": 550000,
+      "category": "Soft Skills",
+      "description": "Cải thiện kỹ năng phân tích và đánh giá",
+      "longDescription": "Thảo luận, phân tích tình huống, giải quyết vấn đề",
+      "image": "https://placehold.co/300x200?text=Critical+Thinking",
+      "rating": 4.6,
+      "isHot": false,
+      "isNew": true,
+      "createdAt": "2023-12-01T18:00:00Z"
+    }
+  ],
+  "product_tags": [
+    {
+      "productId": 1,
+      "tag": "JavaScript",
+      "id": "24d4"
+    },
+    {
+      "productId": 1,
+      "tag": "Frontend",
+      "id": "0aaa"
+    },
+    {
+      "productId": 1,
+      "tag": "React",
+      "id": "6394"
+    },
+    {
+      "productId": 2,
+      "tag": "English",
+      "id": "9708"
+    },
+    {
+      "productId": 2,
+      "tag": "Speaking",
+      "id": "69ad"
+    },
+    {
+      "productId": 2,
+      "tag": "Listening",
+      "id": "bc1c"
+    },
+    {
+      "productId": 3,
+      "tag": "Node.js",
+      "id": "64be"
+    },
+    {
+      "productId": 3,
+      "tag": "Express",
+      "id": "9771"
+    },
+    {
+      "productId": 3,
+      "tag": "MongoDB",
+      "id": "3ee6"
+    },
+    {
+      "productId": 4,
+      "tag": "UI/UX",
+      "id": "ef9d"
+    },
+    {
+      "productId": 4,
+      "tag": "Figma",
+      "id": "1743"
+    },
+    {
+      "productId": 4,
+      "tag": "Design Principles",
+      "id": "952f"
+    },
+    {
+      "productId": 5,
+      "tag": "Vue.js",
+      "id": "5cdb"
+    },
+    {
+      "productId": 5,
+      "tag": "Frontend",
+      "id": "3f82"
+    },
+    {
+      "productId": 5,
+      "tag": "JavaScript",
+      "id": "d3d0"
+    },
+    {
+      "productId": 6,
+      "tag": "Japanese",
+      "id": "546f"
+    },
+    {
+      "productId": 6,
+      "tag": "Language",
+      "id": "50ec"
+    },
+    {
+      "productId": 6,
+      "tag": "Beginner",
+      "id": "0570"
+    },
+    {
+      "productId": 7,
+      "tag": "Python",
+      "id": "7385"
+    },
+    {
+      "productId": 7,
+      "tag": "Programming",
+      "id": "5e62"
+    },
+    {
+      "productId": 7,
+      "tag": "Data Science",
+      "id": "eefd"
+    },
+    {
+      "productId": 8,
+      "tag": "Data Science",
+      "id": "7235"
+    },
+    {
+      "productId": 8,
+      "tag": "Machine Learning",
+      "id": "7989"
+    },
+    {
+      "productId": 8,
+      "tag": "Pandas",
+      "id": "1b8a"
+    },
+    {
+      "productId": 9,
+      "tag": "IELTS",
+      "id": "6964"
+    },
+    {
+      "productId": 9,
+      "tag": "English",
+      "id": "c502"
+    },
+    {
+      "productId": 9,
+      "tag": "Exam Preparation",
+      "id": "cbc9"
+    },
+    {
+      "productId": 10,
+      "tag": "Excel",
+      "id": "6ef0"
+    },
+    {
+      "productId": 10,
+      "tag": "Data Analysis",
+      "id": "7444"
+    },
+    {
+      "productId": 10,
+      "tag": "VBA",
+      "id": "fa8f"
+    },
+    {
+      "productId": 11,
+      "tag": "Presentation",
+      "id": "e84a"
+    },
+    {
+      "productId": 11,
+      "tag": "Public Speaking",
+      "id": "f29f"
+    },
+    {
+      "productId": 11,
+      "tag": "Communication",
+      "id": "8842"
+    },
+    {
+      "productId": 12,
+      "tag": "Critical Thinking",
+      "id": "b83a"
+    },
+    {
+      "productId": 12,
+      "tag": "Problem Solving",
+      "id": "afbc"
+    },
+    {
+      "productId": 12,
+      "tag": "Analysis",
+      "id": "189e"
+    }
+  ],
+  "favorites": [
+    {
+      "userId": 1,
+      "productIds": [
+        1,
+        8,
+        2
+      ],
+      "id": "cf15"
+    },
+    {
+      "id": "f015",
+      "userId": 1752257668518,
+      "productIds": [
+        2
+      ]
+    }
+  ],
+  "suggestions": [
+    {
+      "userId": 1,
+      "productIds": [
+        2,
+        5,
+        9
+      ],
+      "id": "91b4"
+    }
+  ],
+  "history": [
+    {
+      "userId": 1,
+      "productIds": [
+        5,
+        3,
+        1
+      ],
+      "id": "b6d7"
+    },
+    {
+      "id": "e74c",
+      "userId": 1752257668518,
+      "productIds": [
+        1
+      ]
+    },
+    {
+      "id": "d3f0",
+      "userId": 1752257668518,
+      "productIds": [
+        1
+      ]
+    },
+    {
+      "id": "4770",
+      "userId": 1752424793344,
+      "productIds": [
+        4,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "90d6",
+      "userId": 1752424793344,
+      "productIds": [
+        4
+      ]
+    }
+  ],
+  "cart": [
+    {
+      "userId": 1,
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 1
+        },
+        {
+          "productId": 1,
+          "quantity": 13
+        }
+      ],
+      "id": "60fd"
+    },
+    {
+      "id": "7156",
+      "userId": 1752257668518,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchased": [
+    {
+      "userId": 1,
+      "id": "201",
+      "name": "Khóa học React cơ bản",
+      "image": "https://placehold.co/300x200?text=React",
+      "price": 1200000,
+      "progress": 75,
+      "lessons": [
+        {
+          "title": "Giới thiệu",
+          "duration": "03:04",
+          "url": "/videos/gioi-thieu.mp4"
+        },
+        {
+          "title": "Tổng quan React",
+          "duration": "05:14",
+          "url": "/videos/react-overview.mp4"
+        },
+        {
+          "title": "Component & Props",
+          "duration": "07:22",
+          "url": "/videos/props.mp4"
+        }
+      ]
+    },
+    {
+      "userId": 1,
+      "id": "202",
+      "name": "Khóa học NodeJS nâng cao",
+      "image": "https://placehold.co/300x200?text=NodeJS",
+      "price": 1400000,
+      "progress": 100,
+      "lessons": [
+        {
+          "title": "Giới thiệu NodeJS",
+          "duration": "02:30",
+          "url": "/videos/node-intro.mp4"
+        },
+        {
+          "title": "Express Framework",
+          "duration": "04:45",
+          "url": "/videos/express.mp4"
+        },
+        {
+          "title": "Kết nối MongoDB",
+          "duration": "06:15",
+          "url": "/videos/mongodb.mp4"
+        }
+      ]
+    }
+  ],
+  "chatBot": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "Bạn là một trợ lý ảo chuyên nghiệp, hãy trả lời câu hỏi của người dùng một cách ngắn gọn và súc tích."
+      },
+      {
+        "role": "user",
+        "content": "Tôi muốn tìm hiểu về React."
+      },
+      {
+        "role": "assistant",
+        "content": "React là một thư viện JavaScript để xây dựng giao diện người dùng. Nó cho phép bạn tạo các component tái sử dụng và quản lý trạng thái hiệu quả."
+      }
+    ]
+  }
+}

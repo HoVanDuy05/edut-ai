@@ -1,0 +1,11 @@
+.checkout-container {
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 16px;
+  }
+}
