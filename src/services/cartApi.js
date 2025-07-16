@@ -1,71 +1,81 @@
-import axios from 'axios';
-const API_BASE = 'http://localhost:3001';
+const CART_KEY = 'cart_data';
+
+const getAllCarts = () => {
+  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+};
+
+const saveAllCarts = (carts) => {
+  localStorage.setItem(CART_KEY, JSON.stringify(carts));
+};
+
 export const fetchCart = async (userId) => {
-  const res = await axios.get(`${API_BASE}/cart`);
-  const userCart = res.data.find((c) => Number(c.userId) === Number(userId));
-  return userCart ? userCart.items : [];
+  const carts = getAllCarts();
+  const cart = carts.find((c) => Number(c.userId) === Number(userId));
+  return cart ? cart.items : [];
 };
 
 export const updateCart = async (userId, newItems) => {
-  const res = await axios.get(`${API_BASE}/cart`);
-  const cart = res.data.find((c) => Number(c.userId) === Number(userId));
+  const carts = getAllCarts();
+  const index = carts.findIndex((c) => Number(c.userId) === Number(userId));
 
-  if (!cart) {
-    await axios.post(`${API_BASE}/cart`, {
-      userId: Number(userId),
-      items: newItems,
-    });
+  if (index === -1) {
+    carts.push({ userId: Number(userId), items: newItems });
   } else {
-    await axios.patch(`${API_BASE}/cart/${cart.id}`, {
-      items: newItems,
-    });
+    carts[index].items = newItems;
   }
+
+  saveAllCarts(carts);
 };
 
 export const addToCartAPI = async (userId, productId, quantity = 1) => {
-  const res = await axios.get(`${API_BASE}/cart`);
-  const cart = res.data.find((c) => Number(c.userId) === Number(userId));
+  const carts = getAllCarts();
+  const userIndex = carts.findIndex((c) => Number(c.userId) === Number(userId));
 
-  if (!cart) {
-    await axios.post(`${API_BASE}/cart`, {
+  if (userIndex === -1) {
+    carts.push({
       userId: Number(userId),
       items: [{ productId: Number(productId), quantity }],
     });
-    return;
-  }
-
-  const items = [...cart.items];
-  const index = items.findIndex((item) => item.productId === Number(productId));
-
-  if (index !== -1) {
-    items[index].quantity += quantity;
   } else {
-    items.push({ productId: Number(productId), quantity });
+    const items = [...carts[userIndex].items];
+    const itemIndex = items.findIndex((item) => item.productId === Number(productId));
+
+    if (itemIndex !== -1) {
+      items[itemIndex].quantity += quantity;
+    } else {
+      items.push({ productId: Number(productId), quantity });
+    }
+
+    carts[userIndex].items = items;
   }
 
-  await axios.patch(`${API_BASE}/cart/${cart.id}`, { items });
+  saveAllCarts(carts);
 };
 
 export const removeFromCartAPI = async (userId, productId) => {
-  const res = await axios.get(`${API_BASE}/cart`);
-  const cart = res.data.find((c) => Number(c.userId) === Number(userId));
+  const carts = getAllCarts();
+  const userIndex = carts.findIndex((c) => Number(c.userId) === Number(userId));
 
-  if (!cart) return;
+  if (userIndex === -1) return;
 
-  const updatedItems = cart.items.filter((item) => item.productId !== Number(productId));
-  await axios.patch(`${API_BASE}/cart/${cart.id}`, { items: updatedItems });
+  const updatedItems = carts[userIndex].items.filter(
+    (item) => item.productId !== Number(productId)
+  );
+
+  carts[userIndex].items = updatedItems;
+  saveAllCarts(carts);
 };
 
 export const updateCartItemQuantityAPI = async (userId, productId, quantity) => {
-  const res = await axios.get(`${API_BASE}/cart`);
-  const cart = res.data.find((c) => Number(c.userId) === Number(userId));
-  if (!cart) return;
+  const carts = getAllCarts();
+  const userIndex = carts.findIndex((c) => Number(c.userId) === Number(userId));
 
-  const items = cart.items.map((item) =>
-    item.productId === Number(productId)
-      ? { ...item, quantity }
-      : item
+  if (userIndex === -1) return;
+
+  const updatedItems = carts[userIndex].items.map((item) =>
+    item.productId === Number(productId) ? { ...item, quantity } : item
   );
 
-  await axios.patch(`${API_BASE}/cart/${cart.id}`, { items });
+  carts[userIndex].items = updatedItems;
+  saveAllCarts(carts);
 };

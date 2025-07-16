@@ -1,24 +1,39 @@
-import axios from 'axios';
+const USER_KEY = 'users';
 
-const API = 'http://localhost:3001/users';
+const getAllUsers = () => {
+  return JSON.parse(localStorage.getItem(USER_KEY)) || [];
+};
 
+const saveAllUsers = (users) => {
+  localStorage.setItem(USER_KEY, JSON.stringify(users));
+};
+
+// 📥 Đăng nhập hoặc đăng ký bằng email
 export const handleEmailAuth = async (values, mode) => {
-  const { data } = await axios.get(API);
+  const users = getAllUsers();
 
   if (mode === 'login') {
-    const user = data.find(u => u.email === values.email && u.password === values.password);
+    const user = users.find(u => u.email === values.email && u.password === values.password);
     if (!user) throw new Error('Sai thông tin');
     localStorage.setItem('token', 'ok');
     localStorage.setItem('user', JSON.stringify(user));
   } else {
-    if (data.some(u => u.email === values.email)) throw new Error('Email đã sử dụng');
-    const newU = { ...values, id: Date.now(), createdAt: new Date().toISOString() };
-    await axios.post(API, newU);
+    if (users.some(u => u.email === values.email)) {
+      throw new Error('Email đã sử dụng');
+    }
+    const newUser = {
+      ...values,
+      id: Date.now(),
+      createdAt: new Date().toISOString(),
+    };
+    users.push(newUser);
+    saveAllUsers(users);
     localStorage.setItem('token', 'ok');
-    localStorage.setItem('user', JSON.stringify(newU));
+    localStorage.setItem('user', JSON.stringify(newUser));
   }
 };
 
+// 📥 Đăng nhập bằng Google OAuth (token từ Google One Tap)
 export const handleGoogleAuth = async (resp) => {
   const decoded = JSON.parse(atob(resp.credential.split('.')[1]));
   const user = {
@@ -27,22 +42,22 @@ export const handleGoogleAuth = async (resp) => {
     createdAt: new Date().toISOString(),
   };
 
-  const { data } = await axios.get(API);
-  const existed = data.find(u => u.email === user.email);
+  const users = getAllUsers();
+  const existed = users.find(u => u.email === user.email);
 
   if (existed) {
     localStorage.setItem('token', 'ok');
     localStorage.setItem('user', JSON.stringify(existed));
   } else {
-
     const newUser = { ...user, id: Date.now() };
-    await axios.post(API, newUser);
+    users.push(newUser);
+    saveAllUsers(users);
     localStorage.setItem('token', 'ok');
     localStorage.setItem('user', JSON.stringify(newUser));
   }
 };
 
+// 📥 Lấy toàn bộ danh sách người dùng (chỉ dùng cho quản trị hoặc hiển thị)
 export const fetchUsers = async () => {
-  const { data } = await axios.get(API);
-  return data;
+  return getAllUsers();
 };

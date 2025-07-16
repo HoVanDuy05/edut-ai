@@ -1,14 +1,14 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Hồ Văn Duy",
       "email": "vanduyho717@gmail.com",
       "password": "123456",
       "role": "admin"
     },
     {
-      "id": "1752257668518",
+      "id": 1752257668518,
       "name": "Shinichi Kudo",
       "email": "vanduyho919@gmail.com",
       "createdAt": "2025-07-11T18:14:28.420Z"

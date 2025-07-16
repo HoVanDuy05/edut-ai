@@ -31,13 +31,23 @@ const AIChatBot = ({ allProducts = [], userId }) => {
 
   useEffect(() => {
     if (chatOpen) {
-      axios
-        .get('http://localhost:3001/chatBot')
-        .then((res) => {
-          setSuggestedQuestions(res.data);
-        })
-        .catch(() => {});
+      // Gợi ý mặc định
+      const defaultQuestions = [
+        { id: 1, question: 'Tôi nên bắt đầu học gì đầu tiên?' },
+        { id: 2, question: 'Có khóa học nào đang giảm giá không?' },
+        { id: 3, question: 'Khóa học nào phù hợp với người bận rộn?' },
+      ];
 
+      // Nếu chưa có thì lưu vào localStorage
+      if (!localStorage.getItem('aiSuggestedQuestions')) {
+        localStorage.setItem('aiSuggestedQuestions', JSON.stringify(defaultQuestions));
+      }
+
+      // Lấy từ localStorage để hiển thị
+      const savedQuestions = JSON.parse(localStorage.getItem('aiSuggestedQuestions')) || [];
+      setSuggestedQuestions(savedQuestions);
+
+      // Tin nhắn chào
       if (messages.length === 0) {
         const greeting = {
           role: 'assistant',
@@ -53,6 +63,7 @@ const AIChatBot = ({ allProducts = [], userId }) => {
       }, 100);
     }
   }, [chatOpen]);
+
 
   const toggleChat = () => setChatOpen((prev) => !prev);
 
