@@ -15,7 +15,6 @@ import {
 import {
   CreditCardOutlined,
   BankOutlined,
-  DollarOutlined,
   PayCircleOutlined,
 } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import CreditCardForm from '../components/payment/CreditCardForm';
 import BankTransferForm from '../components/payment/BankTransferForm';
 import PayPalForm from '../components/payment/PayPalForm';
+import { createOrder } from '../services/orderApi';
 
 const { Title, Text } = Typography;
 
@@ -64,11 +64,33 @@ export default function CheckoutPage() {
   }, 0);
 
   const handleSuccess = async () => {
-    for (const item of selectedCartItems) {
-      await dispatch(removeFromCart({ userId, productId: item.productId }));
+    try {
+      const orderItems = selectedCartItems.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        product: productsMap[item.productId],
+      }));
+
+      const newOrder = {
+        userId,
+        items: orderItems,
+        total,
+        paymentMethod,
+        createdAt: new Date().toISOString(),
+      };
+
+      await createOrder(newOrder);
+
+      for (const item of selectedCartItems) {
+        await dispatch(removeFromCart({ userId, productId: item.productId }));
+      }
+
+      message.success('Thanh toán thành công. Đơn hàng đã được lưu!');
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+      message.error('Đã có lỗi xảy ra khi thanh toán');
     }
-    message.success('Thanh toán thành công. Cảm ơn bạn!');
-    navigate('/');
   };
 
   return (
