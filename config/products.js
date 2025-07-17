@@ -1,7 +1,7 @@
 // data/products.js
 export const products = [
   {
-      "id": "1",
+      "id": 1,
       "name": "Khóa học React",
       "price": 450000,
       "category": "Web Development",
@@ -14,7 +14,7 @@ export const products = [
       "createdAt": "2023-01-15T10:00:00Z"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Tiếng Anh với người bản xứ",
       "price": 1200000,
       "category": "Language",
@@ -40,7 +40,7 @@ export const products = [
       "createdAt": "2023-03-10T14:00:00Z"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Khóa học UI/UX Design",
       "price": 700000,
       "category": "Design",
@@ -66,7 +66,7 @@ export const products = [
       "createdAt": "2023-05-15T18:00:00Z"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Tiếng Nhật sơ cấp",
       "price": 800000,
       "category": "Language",
@@ -79,7 +79,7 @@ export const products = [
       "createdAt": "2023-06-01T20:00:00Z"
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Khóa học Python",
       "price": 350000,
       "category": "Programming",
@@ -92,7 +92,7 @@ export const products = [
       "createdAt": "2023-07-10T22:00:00Z"
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Khóa học Data Science",
       "price": 1500000,
       "category": "Data Science",
@@ -105,7 +105,7 @@ export const products = [
       "createdAt": "2023-08-20T10:00:00Z"
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Khóa học IELTS 7.0+",
       "price": 1350000,
       "category": "Language",
@@ -118,7 +118,7 @@ export const products = [
       "createdAt": "2023-09-15T12:00:00Z"
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "Khóa học Excel chuyên sâu",
       "price": 400000,
       "category": "Office Skills",
@@ -131,7 +131,7 @@ export const products = [
       "createdAt": "2023-10-01T14:00:00Z"
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "Kỹ năng thuyết trình",
       "price": 300000,
       "category": "Soft Skills",
@@ -144,7 +144,7 @@ export const products = [
       "createdAt": "2023-11-05T16:00:00Z"
     },
     {
-      "id": "12",
+      "id": 12,
       "name": "Tư duy phản biện",
       "price": 550000,
       "category": "Soft Skills",
