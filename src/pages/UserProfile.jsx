@@ -18,6 +18,7 @@ import {
 } from '@ant-design/icons';
 
 import { fetchFavorites } from '../services/api';
+import { fetchOrdersByUser } from '../services/orderApi';
 import ModalCoursePlayer from '../components/ModalCoursePlayer';
 import '../css/UserPage.css';
 
@@ -46,12 +47,11 @@ const UserProfile = () => {
         const fav = await fetchFavorites(user.id);
         setFavorites(fav);
 
-        const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-        const userOrders = allOrders.filter((o) => o.userId === user.id);
-        const items = userOrders.flatMap((o) =>
-          o.items.map((item) => ({
+        const orders = await fetchOrdersByUser(user.id);
+        const items = orders.flatMap(order =>
+          order.items.map(item => ({
             ...item.product,
-            progress: Math.floor(Math.random() * 100),
+            progress: item.progress || Math.floor(Math.random() * 100),
           }))
         );
         setPurchased(items);
@@ -89,7 +89,9 @@ const UserProfile = () => {
           <Col flex={1}>
             <h2 style={{ marginBottom: 4 }}>{userInfo?.name}</h2>
             <p style={{ margin: 0, color: '#888' }}>{userInfo?.email}</p>
-            <p style={{ margin: 0, fontSize: 13 }}>🎉 Thành viên từ: {userInfo?.createdAt}</p>
+            <p style={{ margin: 0, fontSize: 13 }}>
+              🎉 Thành viên từ: {new Date(userInfo?.createdAt).toLocaleDateString()}
+            </p>
           </Col>
         </Row>
       </Card>
