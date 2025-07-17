@@ -70,6 +70,6 @@ export const fetchSuggestions = async (userId) => {
   const suggestion = data.find((s) => s.userId === Number(userId));
   if (!suggestion) return [];
 
-  const products = JSON.parse(localStorage.getItem('products')) || [];
-  return products.filter((p) => suggestion.productIds.includes(p.id));
+  const allProducts = await fetchProducts();
+  return allProducts.filter((p) => suggestion.productIds.includes(p.id));
 };
