@@ -7,7 +7,6 @@ import {
   Avatar,
   Spin,
   message,
-  Button,
   Progress,
   Row,
   Col,
@@ -16,10 +15,9 @@ import {
   UserOutlined,
   HeartOutlined,
   ShoppingCartOutlined,
-  LogoutOutlined,
 } from '@ant-design/icons';
 
-import { fetchFavorites, fetchPurchasedCourses } from '../services/api';
+import { fetchFavorites } from '../services/api';
 import ModalCoursePlayer from '../components/ModalCoursePlayer';
 import '../css/UserPage.css';
 
@@ -46,9 +44,17 @@ const UserProfile = () => {
       try {
         setUserInfo(user);
         const fav = await fetchFavorites(user.id);
-        const purchases = await fetchPurchasedCourses(user.id);
         setFavorites(fav);
-        setPurchased(purchases);
+
+        const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+        const userOrders = allOrders.filter((o) => o.userId === user.id);
+        const items = userOrders.flatMap((o) =>
+          o.items.map((item) => ({
+            ...item.product,
+            progress: Math.floor(Math.random() * 100),
+          }))
+        );
+        setPurchased(items);
       } catch (err) {
         console.error('Lỗi khi tải dữ liệu người dùng:', err);
         message.error('Lỗi khi tải dữ liệu người dùng');
